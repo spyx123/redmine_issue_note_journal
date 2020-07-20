@@ -12,11 +12,11 @@ $(document).ready(function() {
 					$(this).find('ul.details').after('<div id="journal-'+id+'-notes" class="wiki"><p style="color: #959595;">Комментарий удален</p></div>');
 			
 					if ($(this).find('ul.details li').length > 1)
-						$(this).find('ul.details li:first-child').remove();
+						$(this).find('ul.details li:last-child').remove();
 				} else {
 
 					if ($(this).find('ul.details li').length > 0) //первый diff удаляем
-						$(this).find('ul.details li:first-child').remove();
+						$(this).find('ul.details li:last-child').remove();
 				}
 			}	
 		}
