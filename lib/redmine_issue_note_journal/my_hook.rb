@@ -20,7 +20,9 @@ module Redmine_issue_note_journal
         if context[:journal].notes?
           journal = Journal.find(context[:journal].id)
           if journal.present?
-            journal.details << JournalDetail.new(:property => 'attr', :prop_key => 'note', :old_value => journal.details.last[:value], :value => context[:journal].notes)
+            if journal.details.present?
+              journal.details << JournalDetail.new(:property => 'attr', :prop_key => 'note', :old_value => journal.details.last[:value], :value => context[:journal].notes)
+            end  
           end  
         end
         return ''
