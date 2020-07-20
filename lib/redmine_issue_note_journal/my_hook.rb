@@ -9,7 +9,9 @@ module Redmine_issue_note_journal
       def controller_issues_edit_after_save(context={})
         if context[:journal].notes?
           journal = Journal.find(context[:journal].id)
-          journal.details << JournalDetail.new(:property => 'attr', :prop_key => 'note', :old_value => '', :value => context[:journal].notes)
+          if journal?
+            journal.details << JournalDetail.new(:property => 'attr', :prop_key => 'note', :old_value => '', :value => context[:journal].notes)
+          end  
         end
         return ''
       end
