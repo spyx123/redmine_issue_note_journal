@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	var user = $('#loggedas > a').attr('href');
 	$('[id*="note-"').each(function() {
-
-		if (typeof($(this).find('ul.details'))) {
+		var html = $(this).find('ul.details').html();
 		
+		if(typeof(html) != "undefined" && html !== null) {
 			if ($(this).find('ul.details').html().indexOf('<strong>Комментарий</strong>') != -1) {
 				//комментарий
 				var id = $(this).closest('[id*="change-"').attr('id').replace("change-", "");
