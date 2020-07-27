@@ -7,16 +7,28 @@ $(document).ready(function() {
 			if ($(this).find('ul.details').html().indexOf('<strong>Комментарий</strong>') != -1) {
 				//комментарий
 				var id = $(this).closest('[id*="change-"').attr('id').replace("change-", "");
+
+
 				if (!$(this).closest('[id*="change-"').hasClass("has-notes")) {
 					//комментарий удален
 					$(this).find('ul.details').after('<div id="journal-'+id+'-notes" class="wiki"><p style="color: #959595;">Комментарий удален</p></div>');
 			
-					if ($(this).find('ul.details li').length > 1)
-						$(this).find('ul.details li:last-child').remove();
+					if ($(this).find('ul.details li:contains("Комментарий")').length > 0) //первый diff удаляем {}
+					{
+						$(this).find('ul.details li:contains("Комментарий")').each(function(index) {
+  							$(this).remove();
+  							return false; // breaks
+						});
+					}
 				} else {
 
-					if ($(this).find('ul.details li').length > 0) //первый diff удаляем
-						$(this).find('ul.details li:last-child').remove();
+					if ($(this).find('ul.details li:contains("Комментарий")').length > 0) //первый diff удаляем {}
+					{
+						$(this).find('ul.details li:contains("Комментарий")').each(function(index) {
+  							$(this).remove();
+  							return false; // breaks
+						});
+					}	
 				}
 			}	
 		}
